@@ -7,7 +7,7 @@ module CanvasCc::CanvasCC::Models
                        :show_correct_answers, :anonymous_submissions, :could_be_locked,
                        :available, :allowed_attempts, :one_question_at_a_time, :cant_go_back,
                        :assignment_group_identifierref]
-    DATETIME_ATTRIBUTES = [:lock_at, :unlock_at, :due_at]
+    DATETIME_ATTRIBUTES = [:lock_at, :unlock_at, :due_at, :show_correct_answers_at]
 
     ASSESSMENT_TYPE = 'imsqti_xmlv1p2/imscc_xmlv1p1/assessment'
     LAR_TYPE = 'associatedcontent/imscc_xmlv1p1/learning-application-resource'

@@ -19,6 +19,15 @@ module CanvasCc::CanvasCC
                 end
               end
             end
+
+            next unless question.distractors
+            question.distractors.each do |distractor|
+              choice_node.response_label(:ident => Digest::MD5.hexdigest(distractor)) do |label_node|
+                label_node.material do |material_node|
+                  material_node.mattext(distractor, :texttype => 'text/plain')
+                end
+              end
+            end
           end
         end
       end
@@ -34,10 +43,30 @@ module CanvasCc::CanvasCC
           end
           condition_node.setvar "%.2f" % score, :varname => 'SCORE', :action => 'Add'
         end
+
+        next unless match.has_key?(:answer_feedback) && match[:answer_feedback].length > 0
+        processing_node.respcondition do |condition_node|
+          condition_node.conditionvar do |var_node|
+            var_node.not do |not_node|
+              not_node.varequal match[:id], :respident => "response_#{match[:id]}"
+            end
+          end
+          condition_node.displayfeedback :linkrefid => "#{match[:id]}_fb", :feedbacktype => 'Response'
+        end
       end
     end
 
     def self.write_additional_nodes(item_node, question)
+      question.matches.each do |match|
+        next unless match.has_key?(:answer_feedback) && match[:answer_feedback].length > 0
+        item_node.itemfeedback(:ident => "#{match[:id]}_fb") do |feedback_node|
+          feedback_node.flow_mat do |flow_node|
+            flow_node.material do |material_node|
+              material_node.mattext match[:answer_feedback], :texttype => 'text/plain'
+            end
+          end
+        end
+      end
     end
   end
 end

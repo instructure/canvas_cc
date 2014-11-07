@@ -22,6 +22,7 @@ module CanvasCc::CanvasCC
       assessment.description = 'this is a bunch of description'
       assessment.lock_at = Time.parse('Sat, 08 Feb 2014 17:00:00 GMT')
       assessment.unlock_at = Time.parse('Sat, 08 Feb 2014 18:00:00 GMT')
+      assessment.show_correct_answers_at = Time.parse('Sat, 08 Feb 2014 18:00:00 GMT')
       assessment.time_limit = '12'
       assessment.allowed_attempts = '13'
       assessment.scoring_policy = '14'
@@ -45,6 +46,7 @@ module CanvasCc::CanvasCC
       expect(root.%('description').text).to eq assessment.description
       expect(root.%('lock_at').text).to eq '2014-02-08T17:00:00'
       expect(root.%('unlock_at').text).to eq '2014-02-08T18:00:00'
+      expect(root.%('show_correct_answers_at').text).to eq '2014-02-08T18:00:00'
       expect(root.%('time_limit').text).to eq assessment.time_limit
       expect(root.%('allowed_attempts').text).to eq assessment.allowed_attempts
       expect(root.%('scoring_policy').text).to eq assessment.scoring_policy

@@ -20,6 +20,18 @@ module CanvasCc::CanvasCC
 
     def self.write_response_conditions(processing_node, question)
       return unless question.answers.count > 0
+
+      #Feedback
+      question.answers.each do |answer|
+        next unless answer.feedback && answer.feedback.strip.length > 0
+        processing_node.respcondition(:continue => 'Yes') do |resp_condition_node|
+          resp_condition_node.conditionvar do |var_node|
+            var_node.varequal answer.id, :respident => 'response1'
+          end
+          resp_condition_node.displayfeedback(:feedbacktype => 'Response', :linkrefid => "#{answer.id}_fb")
+        end
+      end
+
       processing_node.respcondition(:continue => 'No') do |condition_node|
         condition_node.conditionvar do |var_node|
           var_node.and do |and_node|
@@ -35,7 +47,13 @@ module CanvasCc::CanvasCC
           end
         end
         condition_node.setvar('100', :varname => 'SCORE', :action => 'Set')
+
       end
     end
+
+    def self.write_additional_nodes(item_node, question)
+      write_standard_answer_feedbacks(item_node, question)
+    end
+
   end
 end

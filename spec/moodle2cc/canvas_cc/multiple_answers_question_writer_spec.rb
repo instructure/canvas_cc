@@ -15,6 +15,7 @@ module CanvasCc::CanvasCC
       answer1.id = '1'
       answer1.answer_text = 'something'
       answer1.fraction = '0.5'
+      answer1.feedback = 'feedback1'
       answer2 = CanvasCc::CanvasCC::Models::Answer.new
       answer2.id = '2'
       answer2.answer_text = 'something else'
@@ -28,7 +29,7 @@ module CanvasCc::CanvasCC
       xml = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |node|
         QuestionWriter.write_question(node, question)
       end.doc
-
+      
       expect(xml.at_xpath('item/@ident').value).to eq question.identifier.to_s
       expect(xml.at_xpath('item/@title').value).to eq question.title
       expect(xml.at_xpath("item/itemmetadata/qtimetadata/qtimetadatafield[fieldlabel=\"question_type\" and fieldentry=\"#{question.question_type}\"]")).to_not be_nil
@@ -45,6 +46,9 @@ module CanvasCc::CanvasCC
       expect(condition.at_xpath("conditionvar/and/varequal[@respident=\"response1\" and text()=\"#{answer1.id}\"]")).not_to be_nil
       expect(condition.at_xpath("conditionvar/and/not/varequal[@respident=\"response1\" and text()=\"#{answer2.id}\"]")).not_to be_nil
       expect(condition.at_xpath("conditionvar/and/varequal[@respident=\"response1\" and text()=\"#{answer3.id}\"]")).not_to be_nil
+
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      expect(feedback.text).to eq answer1.feedback
     end
   end
 end

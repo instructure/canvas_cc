@@ -2,6 +2,6 @@ module CanvasCc::CanvasCC::Models
   class MatchingQuestion < Question
     register_question_type 'matching_question'
 
-    attr_accessor :matches
+    attr_accessor :matches, :distractors
   end
 end
