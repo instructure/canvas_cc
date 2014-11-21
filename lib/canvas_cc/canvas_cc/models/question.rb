@@ -3,9 +3,11 @@ module CanvasCc::CanvasCC::Models
     QTI_META_ATTRIBUTES = [:question_type, :points_possible, :assessment_question_identifierref]
     STANDARD_QUESTION_TYPES = ['essay_question', 'fill_in_multiple_blanks_question',
                                'multiple_choice_question', 'multiple_answers_question',
-                               'short_answer_question', 'text_only_question', 'true_false_question']
+                               'short_answer_question', 'text_only_question', 'true_false_question',
+                               'file_upload_question']
 
-    attr_accessor :identifier, :original_identifier, :title, :material, :answers, :general_feedback, *QTI_META_ATTRIBUTES
+    attr_accessor :identifier, :original_identifier, :title, :material, :answers, :general_feedback,
+    :general_incorrect_feedback, :general_correct_feedback, *QTI_META_ATTRIBUTES
 
     @@subclasses = {}
 

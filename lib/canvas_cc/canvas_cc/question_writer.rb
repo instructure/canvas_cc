@@ -83,7 +83,27 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => 'general_fb') do |fb_node|
           fb_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext(question.general_feedback, :texttype => 'text/html')
+              material_node.mattext(question.general_feedback, :texttype => 'text/plain')
+            end
+          end
+        end
+      end
+
+      if question.general_correct_feedback && question.general_correct_feedback.length > 0
+        item_node.itemfeedback(:ident => 'general_correct_fb') do |fb_node|
+          fb_node.flow_mat do |flow_node|
+            flow_node.material do |material_node|
+              material_node.mattext(question.general_correct_feedback, :texttype => 'text/plain')
+            end
+          end
+        end
+      end
+
+      if question.general_incorrect_feedback && question.general_incorrect_feedback.length > 0
+        item_node.itemfeedback(:ident => 'general_incorrect_fb') do |fb_node|
+          fb_node.flow_mat do |flow_node|
+            flow_node.material do |material_node|
+              material_node.mattext(question.general_incorrect_feedback, :texttype => 'text/plain')
             end
           end
         end
@@ -101,7 +121,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => "#{answer.id}_fb") do |feedback_node|
           feedback_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext answer.feedback, :texttype => 'text/html'
+              material_node.mattext answer.feedback, :texttype => 'text/plain'
             end
           end
         end
@@ -127,3 +147,4 @@ require_relative 'numerical_question_writer'
 require_relative 'short_answer_question_writer'
 require_relative 'text_only_question_writer'
 require_relative 'true_false_question_writer'
+require_relative 'file_upload_question_writer'

@@ -66,6 +66,7 @@ module CanvasCc
     autoload :ShortAnswerQuestionWriter, 'canvas_cc/canvas_cc/short_answer_question_writer'
     autoload :TextOnlyQuestionWriter, 'canvas_cc/canvas_cc/text_only_question_writer'
     autoload :TrueFalseQuestionWriter, 'canvas_cc/canvas_cc/true_false_question_writer'
+    autoload :FileUploadQuestionWriter, 'canvas_cc/canvas_cc/file_upload_question_writer'
 
     autoload :QuestionBankWriter, 'canvas_cc/canvas_cc/question_bank_writer'
     autoload :QuestionGroupWriter, 'canvas_cc/canvas_cc/question_group_writer'

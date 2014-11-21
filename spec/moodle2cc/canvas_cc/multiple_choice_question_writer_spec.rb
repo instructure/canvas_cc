@@ -49,9 +49,9 @@ module CanvasCc::CanvasCC
       feedback = condition.at_xpath("displayfeedback[@feedbacktype=\"Response\" and @linkrefid=\"#{answer2.id}_fb\"]")
       expect(feedback).not_to be_nil
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
       expect(feedback.text).to eq answer1.feedback
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer2.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer2.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
       expect(feedback.text).to eq answer2.feedback
 
       # Conditions

@@ -52,10 +52,10 @@ module CanvasCc::CanvasCC
       setvar = condition.at_xpath('setvar[@varname="SCORE" and @action="Set" and text()="0"]')
       expect(setvar).not_to be_nil
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{true_answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{true_answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
       expect(feedback.text).to eq true_answer.feedback
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{false_answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{false_answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
       expect(feedback.text).to eq false_answer.feedback
     end
   end

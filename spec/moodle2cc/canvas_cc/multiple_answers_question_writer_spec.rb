@@ -29,7 +29,7 @@ module CanvasCc::CanvasCC
       xml = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |node|
         QuestionWriter.write_question(node, question)
       end.doc
-      
+
       expect(xml.at_xpath('item/@ident').value).to eq question.identifier.to_s
       expect(xml.at_xpath('item/@title').value).to eq question.title
       expect(xml.at_xpath("item/itemmetadata/qtimetadata/qtimetadatafield[fieldlabel=\"question_type\" and fieldentry=\"#{question.question_type}\"]")).to_not be_nil
@@ -47,7 +47,7 @@ module CanvasCc::CanvasCC
       expect(condition.at_xpath("conditionvar/and/not/varequal[@respident=\"response1\" and text()=\"#{answer2.id}\"]")).not_to be_nil
       expect(condition.at_xpath("conditionvar/and/varequal[@respident=\"response1\" and text()=\"#{answer3.id}\"]")).not_to be_nil
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
       expect(feedback.text).to eq answer1.feedback
     end
   end

@@ -46,22 +46,6 @@ module CanvasCc::CanvasCC
       expect(response.attributes['ident'].value).to eq 'response2'
       expect(response.at_xpath("render_choice/response_label[@ident=\"#{answer2.id}\"]/material/mattext[@texttype=\"text/html\" and text()=\"#{answer2.answer_text}\"]")).not_to be_nil
 
-      # Feedback
-      condition = xml.at_xpath("item/resprocessing/respcondition[@continue=\"Yes\"]/conditionvar/varequal[@respident=\"response1\" and text()=\"#{answer1.id}\"]/../..")
-      expect(condition).not_to be_nil
-      feedback = condition.at_xpath("displayfeedback[@feedbacktype=\"Response\" and @linkrefid=\"#{answer1.id}_fb\"]")
-      expect(feedback).not_to be_nil
-
-      condition = xml.at_xpath("item/resprocessing/respcondition[@continue=\"Yes\"]/conditionvar/varequal[@respident=\"response2\" and text()=\"#{answer2.id}\"]/../..")
-      expect(condition).not_to be_nil
-      feedback = condition.at_xpath("displayfeedback[@feedbacktype=\"Response\" and @linkrefid=\"#{answer2.id}_fb\"]")
-      expect(feedback).not_to be_nil
-
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
-      expect(feedback.text).to eq answer1.feedback
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer2.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
-      expect(feedback.text).to eq answer2.feedback
-
       # Conditions
       condition = xml.at_xpath("item/resprocessing/respcondition[@continue=\"No\"]/conditionvar/varequal[@respident=\"response1\" and text()=\"#{answer1.id}\"]/../..")
       expect(condition).not_to be_nil
