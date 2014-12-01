@@ -16,13 +16,21 @@ module CanvasCc::CanvasCC
       question.answers.each do |answer|
         tolerance = question.tolerances[answer.id]
         processing_node.respcondition(:continue => 'No') do |condition_node|
-          condition_node.conditionvar do |var_node|
-            var_node.or do |or_node|
-              or_node.varequal answer.answer_text, :respident => 'response1'
-              or_node.and do |and_node|
-                and_node.vargte answer.answer_text.to_f - tolerance.to_f, :respident => 'response1'
-                and_node.varlte answer.answer_text.to_f + tolerance.to_f, :respident => 'response1'
+          if answer.answer_text
+            condition_node.conditionvar do |var_node|
+              var_node.or do |or_node|
+                or_node.varequal answer.answer_text, :respident => 'response1'
+                or_node.and do |and_node|
+                  and_node.vargte answer.answer_text.to_f - tolerance.to_f, :respident => 'response1'
+                  and_node.varlte answer.answer_text.to_f + tolerance.to_f, :respident => 'response1'
+                end
               end
+            end
+          elsif question.ranges.has_key?(answer.id)
+            range = question.ranges[answer.id]
+            condition_node.conditionvar do |var_node|
+              var_node.vargte range.low_range, :respident => 'response1'
+              var_node.varlte range.high_range, :respident => 'response1'
             end
           end
           condition_node.setvar(convert_fraction_to_score(answer.fraction), :varname => "SCORE", :action => 'Set')

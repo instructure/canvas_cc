@@ -92,6 +92,7 @@ module CanvasCc
       autoload :Page, 'canvas_cc/canvas_cc/models/page'
       autoload :Discussion, 'canvas_cc/canvas_cc/models/discussion'
       autoload :WorkflowState, 'canvas_cc/canvas_cc/models/workflow_state'
+      autoload :Range, 'canvas_cc/canvas_cc/models/range'
     end
   end
 end
