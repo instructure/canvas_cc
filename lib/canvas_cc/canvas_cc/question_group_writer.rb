@@ -5,6 +5,7 @@ module CanvasCc::CanvasCC
       node.section(:title => question_group.title, :ident => question_group.identifier) do |section_node|
         section_node.selection_ordering do |so_node|
           so_node.selection do |s_node|
+            s_node.sourcebank_ref question_group.sourcebank_ref
             s_node.selection_number question_group.selection_number
             if question_group.points_per_item
               s_node.selection_extension do |se_node|

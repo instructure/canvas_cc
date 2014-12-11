@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    canvas_cc (0.0.13)
+    canvas_cc (0.0.14)
       builder
       happymapper
       nokogiri
