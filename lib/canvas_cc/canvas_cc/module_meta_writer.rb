@@ -26,6 +26,10 @@ module CanvasCc::CanvasCC
       xml.module('identifier' => mod.identifier) {
         xml.title mod.title
         xml.workflow_state mod.workflow_state
+        xml.require_sequential_progress mod.require_sequential_progress unless mod.require_sequential_progress.nil?
+        xml.start_at CanvasCc::CC::CCHelper.ims_datetime(mod.start_at) if mod.start_at
+        xml.end_at CanvasCc::CC::CCHelper.ims_datetime(mod.end_at) if mod.end_at
+        xml.unlock_at CanvasCc::CC::CCHelper.ims_datetime(mod.unlock_at) if mod.unlock_at
         xml.position(position)
         xml.items { |xml|
           add_module_items_to_xml(mod.module_items, xml)

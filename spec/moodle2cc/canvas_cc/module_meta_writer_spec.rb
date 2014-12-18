@@ -19,6 +19,10 @@ module CanvasCc::CanvasCC
       canvas_module.identifier = 'module_identifier'
       canvas_module.title = 'test_title'
       canvas_module.workflow_state = 'active'
+      canvas_module.start_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.end_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.unlock_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.require_sequential_progress = false
       xml = write_xml(canvas_module)
 
       assert_xml_schema(xml)
@@ -28,12 +32,20 @@ module CanvasCc::CanvasCC
       canvas_module.identifier = 'ident'
       canvas_module.title = 'module title'
       canvas_module.workflow_state = 'active'
+      canvas_module.start_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.end_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.unlock_at = Time.parse('Sat, 08 Feb 2014 16:00:00 GMT')
+      canvas_module.require_sequential_progress = false
       xml = write_xml(canvas_module)
 
       expect(xml.at_xpath('xmlns:modules/xmlns:module/@identifier').text).to eq('ident')
       expect(xml.%('modules/module/title').text).to eq('module title')
       expect(xml.%('modules/module/workflow_state').text).to eq('active')
       expect(xml.%('modules/module/position').text).to eq('0')
+      expect(xml.%('modules/module/start_at').text).to eq('2014-02-08T16:00:00')
+      expect(xml.%('modules/module/end_at').text).to eq('2014-02-08T16:00:00')
+      expect(xml.%('modules/module/unlock_at').text).to eq('2014-02-08T16:00:00')
+      expect(xml.%('modules/module/require_sequential_progress').text).to eq('false')
     end
 
     it 'increments the position for each module that is written' do
