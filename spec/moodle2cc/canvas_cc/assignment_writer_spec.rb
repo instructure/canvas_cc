@@ -30,6 +30,7 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     assignment.automatic_peer_reviews = 'true'
     assignment.grade_group_students_individually = 'false'
     assignment.muted = true
+    assignment.quiz_identifierref = 'abc'
 
     subject.write
     xml = Nokogiri::XML(File.read(File.join(work_dir, assignment.assignment_resource.files.select{ |f| f.split(//).last(4).join("").to_s == '.xml'}.first)))
@@ -53,6 +54,7 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     expect(xml.%('assignment/automatic_peer_reviews').text).to eq 'true'
     expect(xml.%('assignment/grade_group_students_individually').text).to eq 'false'
     expect(xml.%('assignment/muted').text).to eq 'true'
+    expect(xml.%('assignment/quiz_identifierref').text).to eq 'abc'
 
   end
 

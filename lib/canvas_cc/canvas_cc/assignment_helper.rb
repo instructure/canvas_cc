@@ -25,5 +25,6 @@ module CanvasCc::CanvasCC::AssignmentHelper
     xml.peer_reviews assignment.peer_reviews unless assignment.peer_reviews.nil?
     xml.automatic_peer_reviews assignment.automatic_peer_reviews unless assignment.automatic_peer_reviews.nil?
     xml.anonymous_peer_reviews assignment.anonymous_peer_reviews unless assignment.anonymous_peer_reviews.nil?
+    xml.quiz_identifierref assignment.quiz_identifierref unless assignment.quiz_identifierref.nil?
   end
 end
