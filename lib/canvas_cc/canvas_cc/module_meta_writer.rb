@@ -34,6 +34,9 @@ module CanvasCc::CanvasCC
         xml.items { |xml|
           add_module_items_to_xml(mod.module_items, xml)
         }
+        xml.prerequisites { |xml|
+          add_prerequisites_to_xml(mod.prerequisites, xml)
+        }
       }
     end
 
@@ -48,6 +51,15 @@ module CanvasCc::CanvasCC
           xml.indent(item.indent)
           xml.identifierref(item.identifierref) if item.identifierref
           xml.url(item.url) if item.url
+        }
+      end
+    end
+
+    def add_prerequisites_to_xml(prerequisites, xml)
+      prerequisites.each do |pre|
+        xml.prerequisite('type' => pre.type) { |xml|
+          xml.title pre.title
+          xml.identifierref pre.identifierref
         }
       end
     end

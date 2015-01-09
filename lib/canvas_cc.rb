@@ -93,6 +93,7 @@ module CanvasCc
       autoload :Discussion, 'canvas_cc/canvas_cc/models/discussion'
       autoload :WorkflowState, 'canvas_cc/canvas_cc/models/workflow_state'
       autoload :Range, 'canvas_cc/canvas_cc/models/range'
+      autoload :ModulePrerequisite, 'canvas_cc/canvas_cc/models/module_prerequisite'
     end
   end
 end

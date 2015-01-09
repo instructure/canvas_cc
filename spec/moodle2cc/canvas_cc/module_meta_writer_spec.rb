@@ -5,6 +5,7 @@ module CanvasCc::CanvasCC
 
     let(:canvas_module) { Models::CanvasModule.new }
     let(:module_item) { Models::ModuleItem.new }
+    let(:module_prerequisite) {Models::ModulePrerequisite.new}
     let(:tmpdir) { Dir.mktmpdir }
 
     before :each do
@@ -52,6 +53,21 @@ module CanvasCc::CanvasCC
       xml = write_xml(Models::CanvasModule.new, Models::CanvasModule.new)
       expect(xml.%('modules/module/position').text).to eq('0')
       expect(xml.%('modules/module[last()]/position').text).to eq('1')
+    end
+
+    context 'prerequisites' do
+      it 'writes prerequisites' do
+        canvas_module.identifier = 'module_identifier'
+        module_prerequisite.type = Models::ModulePrerequisite::CONTENT_TYPE_CONTEXT_MODULE
+        module_prerequisite.title = 'title'
+        module_prerequisite.identifierref = canvas_module.identifier
+        canvas_module.prerequisites << module_prerequisite
+        xml = write_xml(canvas_module)
+        pre_node = xml.%('modules/module/prerequisites/prerequisite')
+        expect(pre_node.at_xpath('@type').text).to eq(Models::ModulePrerequisite::CONTENT_TYPE_CONTEXT_MODULE)
+        expect(pre_node.%('title').text).to eq('title')
+        expect(pre_node.%('identifierref').text).to eq(canvas_module.identifier)
+      end
     end
 
     context 'module items' do
