@@ -94,6 +94,7 @@ module CanvasCc
       autoload :WorkflowState, 'canvas_cc/canvas_cc/models/workflow_state'
       autoload :Range, 'canvas_cc/canvas_cc/models/range'
       autoload :ModulePrerequisite, 'canvas_cc/canvas_cc/models/module_prerequisite'
+      autoload :ModuleCompletionRequirement, 'canvas_cc/canvas_cc/models/module_completion_requirement'
     end
   end
 end

@@ -37,6 +37,10 @@ module CanvasCc::CanvasCC
         xml.prerequisites { |xml|
           add_prerequisites_to_xml(mod.prerequisites, xml)
         }
+
+        xml.completionRequirements {|xml|
+          add_completion_requirements_to_xml(mod.completion_requirements, xml)
+        }
       }
     end
 
@@ -60,6 +64,16 @@ module CanvasCc::CanvasCC
         xml.prerequisite('type' => pre.type) { |xml|
           xml.title pre.title
           xml.identifierref pre.identifierref
+        }
+      end
+    end
+
+    def add_completion_requirements_to_xml(completion_requirements, xml)
+      completion_requirements.each do |comp_req|
+        xml.completionRequirement('type' => comp_req.type){|xml|
+          xml.identifierref comp_req.identifierref
+          xml.min_score comp_req.min_score
+          xml.max_score comp_req.max_score
         }
       end
     end

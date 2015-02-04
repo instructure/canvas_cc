@@ -6,6 +6,7 @@ module CanvasCc::CanvasCC
     let(:canvas_module) { Models::CanvasModule.new }
     let(:module_item) { Models::ModuleItem.new }
     let(:module_prerequisite) {Models::ModulePrerequisite.new}
+    let(:module_completion_req) {Models::ModuleCompletionRequirement.new}
     let(:tmpdir) { Dir.mktmpdir }
 
     before :each do
@@ -67,6 +68,24 @@ module CanvasCc::CanvasCC
         expect(pre_node.at_xpath('@type').text).to eq(Models::ModulePrerequisite::CONTENT_TYPE_CONTEXT_MODULE)
         expect(pre_node.%('title').text).to eq('title')
         expect(pre_node.%('identifierref').text).to eq(canvas_module.identifier)
+      end
+    end
+
+    context 'completion requirements' do
+      it 'writes completion requirements' do
+        canvas_module.identifier = 'module_identifier'
+        module_completion_req.type = Models::ModuleCompletionRequirement::CONTENT_TYPE_MIN_SCORE
+        module_completion_req.min_score = 1
+        module_completion_req.max_score = 5
+        module_completion_req.identifierref = canvas_module.identifier
+        canvas_module.completion_requirements << module_completion_req
+        xml = write_xml(canvas_module)
+        comp_node = xml.%('modules/module/completionRequirements/completionRequirement')
+        expect(comp_node.at_xpath('@type').text).to eq(Models::ModuleCompletionRequirement::CONTENT_TYPE_MIN_SCORE)
+        expect(comp_node.%('min_score').text).to eq('1')
+        expect(comp_node.%('max_score').text).to eq('5')
+        expect(comp_node.%('identifierref').text).to eq(canvas_module.identifier)
+
       end
     end
 
