@@ -5,6 +5,10 @@ module CanvasCc::CanvasCC
 
     COURSE_SETTINGS_DIR = 'course_settings'
 
+    class << self
+      Zip.write_zip64_support = true
+    end
+
     def initialize(course)
       @course = course
     end
