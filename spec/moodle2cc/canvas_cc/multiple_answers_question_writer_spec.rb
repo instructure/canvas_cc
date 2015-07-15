@@ -47,7 +47,7 @@ module CanvasCc::CanvasCC
       expect(condition.at_xpath("conditionvar/and/not/varequal[@respident=\"response1\" and text()=\"#{answer2.id}\"]")).not_to be_nil
       expect(condition.at_xpath("conditionvar/and/varequal[@respident=\"response1\" and text()=\"#{answer3.id}\"]")).not_to be_nil
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer1.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
       expect(feedback.text).to eq answer1.feedback
     end
   end

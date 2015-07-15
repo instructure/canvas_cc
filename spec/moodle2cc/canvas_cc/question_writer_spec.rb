@@ -100,7 +100,7 @@ module CanvasCc::CanvasCC
 
       general_feedback = xml.at_xpath('item/itemfeedback[@ident="general_fb"]')
       expect(general_feedback).to_not be_nil
-      expect(general_feedback.at_xpath('flow_mat/material/mattext[@texttype="text/plain"]').text).to eq question.general_feedback
+      expect(general_feedback.at_xpath('flow_mat/material/mattext[@texttype="text/html"]').text).to eq question.general_feedback
     end
 
     it 'writes standard answer feedback if called' do
@@ -113,7 +113,7 @@ module CanvasCc::CanvasCC
         QuestionWriter.write_question(node, question)
       end.doc
 
-      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/plain\"]")
+      feedback = xml.at_xpath("item/itemfeedback[@ident=\"#{answer.id}_fb\"]/flow_mat/material/mattext[@texttype=\"text/html\"]")
       expect(feedback.text).to eq answer.feedback
     end
 

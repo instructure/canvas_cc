@@ -83,7 +83,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => 'general_fb') do |fb_node|
           fb_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext(question.general_feedback, :texttype => 'text/plain')
+              material_node.mattext(question.general_feedback, :texttype => 'text/html')
             end
           end
         end
@@ -93,7 +93,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => 'general_correct_fb') do |fb_node|
           fb_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext(question.general_correct_feedback, :texttype => 'text/plain')
+              material_node.mattext(question.general_correct_feedback, :texttype => 'text/html')
             end
           end
         end
@@ -103,7 +103,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => 'general_incorrect_fb') do |fb_node|
           fb_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext(question.general_incorrect_feedback, :texttype => 'text/plain')
+              material_node.mattext(question.general_incorrect_feedback, :texttype => 'text/html')
             end
           end
         end
@@ -121,7 +121,7 @@ module CanvasCc::CanvasCC
         item_node.itemfeedback(:ident => "#{answer.id}_fb") do |feedback_node|
           feedback_node.flow_mat do |flow_node|
             flow_node.material do |material_node|
-              material_node.mattext answer.feedback, :texttype => 'text/plain'
+              material_node.mattext answer.feedback, :texttype => 'text/html'
             end
           end
         end

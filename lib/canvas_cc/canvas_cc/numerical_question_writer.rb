@@ -16,7 +16,7 @@ module CanvasCc::CanvasCC
       question.answers.each do |answer|
         tolerance = question.tolerances[answer.id]
         processing_node.respcondition(:continue => 'No') do |condition_node|
-          if answer.answer_text && !answer.answer_text.empty?
+          if answer.answer_text && !answer.answer_text.to_s.empty?
             condition_node.conditionvar do |var_node|
               var_node.or do |or_node|
                 or_node.varequal answer.answer_text, :respident => 'response1'
