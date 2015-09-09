@@ -46,6 +46,18 @@ module CanvasCc::CanvasCC
       end
     end
 
+    it 'writes copyright information' do
+      file.identifier = 'abc123'
+      file.usage_rights = 'public_domain'
+      create_file('sample.txt') do |source_file|
+        file.file_location = source_file
+        file.file_path = 'sample.txt'
+        xml = write_xml(writer(file, nil))
+        expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:usage_rights/@use_justification').text).to eql 'public_domain'
+        expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:usage_rights/xmlns:license').text).to eql 'public_domain'
+      end
+    end
+
     it 'writes folders' do
       folder.hidden = true
       folder.locked = true

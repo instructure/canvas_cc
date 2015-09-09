@@ -253,6 +253,7 @@ A File can have the following attributes
 * **file_path** - the path of the file including the file name, for example '/assignments/files/test.png'
 * **file_location** - the location on the filesystem for the file, for example '/tmp/files/assignments/files/test.png'
 * **hidden** - whether or not this file is hidden.  true or false
+* **usage_rights** - copyright information.  Valid options: "own_copyright"|"used_by_permission"|"fair_use"|"public_domain"|"creative_commons".  See [File Usage Rights](https://canvas.instructure.com/doc/api/files.html#method.usage_rights.set_usage_rights)
 
 To reference a file inside of html content within pages, quizzes, assignments, discussions or other html content, the link can be written in the following format.  When imported the references will be correctly updated to the file path of the content within Canvas.
 

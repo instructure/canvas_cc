@@ -62,7 +62,7 @@ module CanvasCc::CanvasCC
       has_copyright = @course.copyright && !@course.copyright.empty?
       xml[ns].rights {
         xml[ns].copyrightAndOtherRestrictions {
-          xml[ns].value has_copyright ? 'yes' : 'no'
+          xml[ns].value (has_copyright || @course.files.any? { |f| f.usage_rights } ? 'yes' : 'no')
         }
         if has_copyright
           xml[ns].description {

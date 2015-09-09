@@ -4,7 +4,7 @@ module CanvasCc::CanvasCC::Models
     WEB_RESOURCES = 'web_resources'
 
     attr_reader :file_path
-    attr_accessor :file_location, :hidden, :locked
+    attr_accessor :file_location, :hidden, :locked, :usage_rights
 
     def initialize
       super
@@ -17,6 +17,13 @@ module CanvasCc::CanvasCC::Models
       @file_path = file_path
     end
 
-
+    def license
+      case usage_rights
+      when 'own_copyright', 'used_by_permission', 'fair_use'
+        'private'
+      else
+        usage_rights
+      end
+    end
   end
 end

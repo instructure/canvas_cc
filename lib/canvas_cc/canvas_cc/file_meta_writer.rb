@@ -36,6 +36,11 @@ module CanvasCc::CanvasCC
           xml.file('identifier' => file.identifier){
             xml.hidden file.hidden unless file.hidden.nil?
             xml.locked file.locked unless file.locked.nil?
+            unless file.usage_rights.nil?
+              xml.usage_rights('use_justification' => file.usage_rights) {
+                xml.license file.license
+              }
+            end
           }
         end
       }
