@@ -13,6 +13,7 @@ module CanvasCc::CanvasCC
       course.canvas_modules << Models::CanvasModule.new
 
       CanvasExportWriter.any_instance.stub(:write)
+      CourseSyllabusWriter.any_instance.stub(:write)
       CourseSettingWriter.any_instance.stub(:write)
       ModuleMetaWriter.any_instance.stub(:write)
       ImsManifestGenerator.any_instance.stub(:write)
@@ -27,7 +28,7 @@ module CanvasCc::CanvasCC
       FileUtils.rm_r tmpdir
     end
 
-    [CanvasExportWriter, CourseSettingWriter, ModuleMetaWriter, ImsManifestGenerator,
+    [CanvasExportWriter, CourseSyllabusWriter, CourseSettingWriter, ModuleMetaWriter, ImsManifestGenerator,
      FileMetaWriter, PageWriter, DiscussionWriter, AssignmentWriter, QuestionBankWriter].each do |klass|
       it "writes #{klass}" do
         writer_double = double(write: nil)
