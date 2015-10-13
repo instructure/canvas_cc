@@ -9,11 +9,12 @@ module CanvasCc::CanvasCC::Models
 
     MAX_URL_LENGTH = 80
 
-    attr_accessor :workflow_state, :editing_roles, :body, :title
+    attr_accessor :workflow_state, :editing_roles, :body, :title, :front_page
 
     def initialize
       super
       @type = WEB_CONTENT_TYPE
+      @front_page = false
     end
 
     def identifier=(identifier)

@@ -22,6 +22,7 @@ module CanvasCc::CanvasCC
             head.meta(name: 'identifier', content: page.identifier)
             head.meta(name: 'editing_roles', content: page.editing_roles)
             head.meta(name: 'workflow_state', content: page.workflow_state)
+            head.meta(name: 'front_page', content: page.front_page)
             head.title page.title
           }
           html.body { |body|
