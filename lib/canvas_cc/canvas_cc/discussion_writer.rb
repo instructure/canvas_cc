@@ -44,6 +44,9 @@ module CanvasCc::CanvasCC
           xml.type 'topic'
           xml.discussion_type discussion.discussion_type
           xml.require_initial_post discussion.require_initial_post
+          xml.pinned discussion.pinned
+          xml.delayed_post_at discussion.delayed_post_at
+          xml.lock_at discussion.lock_at
           unless discussion.assignment.nil?
             xml.assignment('identifier' => discussion.assignment.assignment_resource.identifier) { |xml|
               assignment_xml(discussion.assignment, xml)

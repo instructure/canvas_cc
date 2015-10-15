@@ -1,7 +1,7 @@
 module CanvasCc::CanvasCC::Models
   class Discussion
     attr_accessor :identifier, :title, :text, :discussion_type, :workflow_state, :require_initial_post,
-                  :assignment, :position
+                  :assignment, :position, :pinned, :lock_at, :delayed_post_at
     DISCUSSION_ID_POSTFIX = '_DISCUSSION'
     DISCUSSION_META_POSTFIX = '_meta'
     IMSDT_TYPE = 'imsdt_xmlv1p1'

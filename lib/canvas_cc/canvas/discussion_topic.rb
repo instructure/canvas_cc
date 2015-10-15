@@ -52,6 +52,10 @@ module CanvasCc::Canvas
           topic_meta.posted_at @posted_at
           topic_meta.position @position
           topic_meta.type @type
+          topic_meta.pinned @pinned
+          topic_meta.delayed_post_at @delayed_post_at
+          topic_meta.lock_at @lock_at
+
         end
       end
     end

@@ -22,11 +22,15 @@ describe CanvasCc::CanvasCC::DiscussionWriter do
   end
 
   it 'creates the meta xml' do
+    time = Time.now
     discussion.identifier = 'discussion_id'
     discussion.title = 'Discussion Title'
     discussion.text = '<p>discussion_text</p>'
     discussion.discussion_type = 'threaded'
     discussion.position = '1'
+    discussion.pinned = true
+    discussion.delayed_post_at = time
+    discussion.lock_at = time
     writer.write
     xml = Nokogiri::XML(File.read(File.join(work_dir, discussion.meta_resource.href)))
     expect(xml.at_xpath('xmlns:topicMeta/@identifier').value).to eq('discussion_id_meta')
@@ -35,6 +39,10 @@ describe CanvasCc::CanvasCC::DiscussionWriter do
     expect(xml.%('topicMeta/type').text).to eq 'topic'
     expect(xml.%('topicMeta/position').text).to eq '1'
     expect(xml.%('topicMeta/discussion_type').text).to eq 'threaded'
+    expect(xml.%('topicMeta/pinned').text).to eq 'true'
+    expect(xml.%('topicMeta/delayed_post_at').text).to eq time.to_s
+    expect(xml.%('topicMeta/lock_at').text).to eq time.to_s
+
   end
 
   it 'creates assignment meta' do
