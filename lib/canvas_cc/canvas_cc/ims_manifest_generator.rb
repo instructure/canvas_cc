@@ -6,6 +6,7 @@ module CanvasCc::CanvasCC
     SCHEMA_VERSION = '1.1.0'
     LOMIMSCC = 'lomimscc'
     SETTINGS_POSTFIX = '_settings'
+    SYLLABUS_POSTFIX = '_syllabus'
     TYPE_LAR = 'associatedcontent/imscc_xmlv1p1/learning-application-resource'
     CANVAS_EXPORT_PATH = 'course_settings/canvas_export.txt'
     ALL_MODULES_IDENTIFIER = 'LearningModules'
@@ -98,6 +99,7 @@ module CanvasCc::CanvasCC
     def resources(xml, resources)
       xml.resources { |xml|
         course_setting_resource(xml)
+        course_syllabus_resource(xml)
         resources.each do |resource|
           xml.resource(resource.attributes) do |xml|
             resource.files.each { |file| xml.file(href: file) }
@@ -118,6 +120,15 @@ module CanvasCc::CanvasCC
       }
     end
 
+    def course_syllabus_resource(xml)
+      course_settings_dir = CanvasCc::CanvasCC::CartridgeCreator::COURSE_SETTINGS_DIR
+      syllabus_file = File.join(course_settings_dir, CanvasCc::CanvasCC::CourseSyllabusWriter::COURSE_SYLLABUS_FILE)
+      xml.resource('identifier' => @course.identifier + SYLLABUS_POSTFIX,
+                   'type' => TYPE_LAR,
+                   'href' => syllabus_file) do |xml|
+        xml.file('href' => syllabus_file)
+      end
+    end
 
   end
 end
