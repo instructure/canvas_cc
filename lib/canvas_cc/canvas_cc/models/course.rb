@@ -2,7 +2,7 @@ module CanvasCc::CanvasCC::Models
   class Course
 
     attr_accessor :format, :identifier, :copyright, :settings, :resources, :canvas_modules, :files, :pages, :discussions,
-                  :assignments, :assessments, :question_banks, :assignment_groups, :folders, :syllabus
+                  :assignments, :assessments, :question_banks, :assignment_groups, :folders, :syllabus, :outcomes
 
     def initialize
       @settings = {}
@@ -16,6 +16,7 @@ module CanvasCc::CanvasCC::Models
       @assessments = []
       @question_banks = []
       @assignment_groups = []
+      @outcomes = []
     end
 
     def start_at

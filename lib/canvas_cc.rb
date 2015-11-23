@@ -54,6 +54,8 @@ module CanvasCc
     autoload :AssignmentWriter, 'canvas_cc/canvas_cc/assignment_writer'
     autoload :AssignmentGroupWriter, 'canvas_cc/canvas_cc/assignment_group_writer'
     autoload :CourseSyllabusWriter, 'canvas_cc/canvas_cc/course_syllabus_writer'
+    autoload :OutcomeWriter, 'canvas_cc/canvas_cc/outcome_writer'
+    autoload :RatingWriter, 'canvas_cc/canvas_cc/rating_writer'
 
     autoload :QuestionWriter, 'canvas_cc/canvas_cc/question_writer'
     autoload :CalculatedQuestionWriter, 'canvas_cc/canvas_cc/calculated_question_writer'
@@ -97,6 +99,8 @@ module CanvasCc
       autoload :Range, 'canvas_cc/canvas_cc/models/range'
       autoload :ModulePrerequisite, 'canvas_cc/canvas_cc/models/module_prerequisite'
       autoload :ModuleCompletionRequirement, 'canvas_cc/canvas_cc/models/module_completion_requirement'
+      autoload :Outcome, 'canvas_cc/canvas_cc/models/outcome'
+      autoload :Rating, 'canvas_cc/canvas_cc/models/rating'
     end
   end
 end

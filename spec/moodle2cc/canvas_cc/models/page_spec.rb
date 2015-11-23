@@ -11,8 +11,6 @@ module CanvasCc::CanvasCC::Models
     it_behaves_like 'it has an attribute for', :body
     it_behaves_like 'it has an attribute for', :title
 
-    its(:type) { should eq 'webcontent' }
-
     it "hashes the identifier" do
       page.identifier = 3
       expect(page.identifier).to eq 3
