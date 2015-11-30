@@ -4,7 +4,7 @@ module CanvasCc::CanvasCC::Models
                   :assignment_group_identifier_ref, :workflow_state, :points_possible, :grading_type, :all_day,
                   :submission_types, :position, :peer_review_count, :peer_reviews_assigned, :peer_reviews,
                   :automatic_peer_reviews, :grade_group_students_individually, :muted, :turnitin_enabled,
-                  :anonymous_peer_reviews, :quiz_identifierref
+                  :anonymous_peer_reviews, :quiz_identifierref, :rubric, :rubric_use_for_grading, :rubric_hide_score_total
 
     LAR_TYPE = 'associatedcontent/imscc_xmlv1p1/learning-application-resource'
     ASSIGNMENT_SETTINGS_FILE = 'assignment_settings.xml'

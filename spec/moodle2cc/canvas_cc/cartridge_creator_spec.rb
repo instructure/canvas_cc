@@ -22,6 +22,8 @@ module CanvasCc::CanvasCC
       DiscussionWriter.any_instance.stub(:write)
       AssignmentWriter.any_instance.stub(:write)
       QuestionBankWriter.any_instance.stub(:write)
+      OutcomeWriter.any_instance.stub(:write)
+      RubricWriter.any_instance.stub(:write)
     end
 
     after :each do
@@ -29,7 +31,7 @@ module CanvasCc::CanvasCC
     end
 
     [CanvasExportWriter, CourseSyllabusWriter, CourseSettingWriter, ModuleMetaWriter, ImsManifestGenerator,
-     FileMetaWriter, PageWriter, DiscussionWriter, AssignmentWriter, QuestionBankWriter].each do |klass|
+     FileMetaWriter, PageWriter, DiscussionWriter, AssignmentWriter, QuestionBankWriter, OutcomeWriter, RubricWriter].each do |klass|
       it "writes #{klass}" do
         writer_double = double(write: nil)
         klass.stub(:new).and_return(writer_double)

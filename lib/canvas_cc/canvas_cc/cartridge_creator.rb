@@ -52,6 +52,7 @@ module CanvasCc::CanvasCC
       CanvasCc::CanvasCC::QuestionBankWriter.new(dir, *@course.question_banks).write
       CanvasCc::CanvasCC::AssessmentWriter.new(dir, *@course.assessments).write
       CanvasCc::CanvasCC::OutcomeWriter.new(dir, *@course.outcomes).write
+      CanvasCc::CanvasCC::RubricWriter.new(dir, *@course.rubrics).write
     end
 
     def zip_dir(out_file, dir)

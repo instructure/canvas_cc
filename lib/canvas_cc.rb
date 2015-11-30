@@ -56,6 +56,7 @@ module CanvasCc
     autoload :CourseSyllabusWriter, 'canvas_cc/canvas_cc/course_syllabus_writer'
     autoload :OutcomeWriter, 'canvas_cc/canvas_cc/outcome_writer'
     autoload :RatingWriter, 'canvas_cc/canvas_cc/rating_writer'
+    autoload :RubricWriter, 'canvas_cc/canvas_cc/rubric_writer'
 
     autoload :QuestionWriter, 'canvas_cc/canvas_cc/question_writer'
     autoload :CalculatedQuestionWriter, 'canvas_cc/canvas_cc/calculated_question_writer'
@@ -101,6 +102,8 @@ module CanvasCc
       autoload :ModuleCompletionRequirement, 'canvas_cc/canvas_cc/models/module_completion_requirement'
       autoload :Outcome, 'canvas_cc/canvas_cc/models/outcome'
       autoload :Rating, 'canvas_cc/canvas_cc/models/rating'
+      autoload :Rubric, 'canvas_cc/canvas_cc/models/rubric'
+      autoload :RubricCriterion, 'canvas_cc/canvas_cc/models/rubric_criterion'
     end
   end
 end

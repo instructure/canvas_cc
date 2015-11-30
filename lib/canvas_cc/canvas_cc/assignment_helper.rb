@@ -26,5 +26,11 @@ module CanvasCc::CanvasCC::AssignmentHelper
     xml.automatic_peer_reviews assignment.automatic_peer_reviews unless assignment.automatic_peer_reviews.nil?
     xml.anonymous_peer_reviews assignment.anonymous_peer_reviews unless assignment.anonymous_peer_reviews.nil?
     xml.quiz_identifierref assignment.quiz_identifierref unless assignment.quiz_identifierref.nil?
+    unless assignment.rubric.nil?
+      xml.rubric_identifierref assignment.rubric.identifier
+      xml.rubric_external_identifier assignment.rubric.external_identifier
+    end
+    xml.rubric_use_for_grading assignment.rubric_use_for_grading unless assignment.rubric_use_for_grading.nil?
+    xml.rubric_hide_score_total assignment.rubric_hide_score_total unless assignment.rubric_hide_score_total.nil?
   end
 end
