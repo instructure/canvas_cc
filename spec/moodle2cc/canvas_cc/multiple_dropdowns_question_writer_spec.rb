@@ -14,10 +14,10 @@ module CanvasCc::CanvasCC
       question.responses = [
         {:id => "response1", :choices => [
           {:id => "3_choice_0_0", :text => "1"},
-          {:id => "3_choice_0_1", :text => "2"}
+          {:id => "3_choice_0_1", :text => "2", :answer => true}
         ]},
         {:id => "response2", :choices => [
-          {:id => "3_choice_1_0", :text => "1"},
+          {:id => "3_choice_1_0", :text => "1", :answer => true},
           {:id => "3_choice_1_1", :text => "2"}
         ]}
       ]
@@ -41,6 +41,10 @@ module CanvasCc::CanvasCC
       expect(response.attributes['ident'].value).to eq 'response_response2'
       expect(response.at_xpath("render_choice/response_label[@ident=\"3_choice_1_0\"]/material/mattext[@texttype=\"text/plain\" and text()=\"1\"]")).not_to be_nil
       expect(response.at_xpath("render_choice/response_label[@ident=\"3_choice_1_1\"]/material/mattext[@texttype=\"text/plain\" and text()=\"2\"]")).not_to be_nil
+
+      expect(xml.xpath('item/resprocessing/respcondition').count).to eq(3)
+      expect(xml.xpath("item/resprocessing/respcondition/conditionvar/varequal[@respident=\"response_response1\"]").text).to eq("3_choice_0_1")
+      expect(xml.xpath("item/resprocessing/respcondition/conditionvar/varequal[@respident=\"response_response2\"]").text).to eq("3_choice_1_0")
     end
   end
 end

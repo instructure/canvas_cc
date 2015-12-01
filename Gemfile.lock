@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    canvas_cc (0.0.24)
+    canvas_cc (0.0.25)
       builder
       happymapper
       nokogiri
@@ -87,8 +87,6 @@ DEPENDENCIES
   guard-minitest
   guard-rspec
   minitest
+  pry
   rake
   rspec (~> 2)
-
-BUNDLED WITH
-   1.10.5

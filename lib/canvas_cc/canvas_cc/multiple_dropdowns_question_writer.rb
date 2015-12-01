@@ -24,7 +24,17 @@ module CanvasCc::CanvasCC
     end
 
     def self.write_response_conditions(processing_node, question)
-      # this is always an answerless questionnaire question (for now), so no response conditions are necessary
+      weight = 100.to_f/question.responses.count
+      question.responses.each do |response|
+        correct_choice = response[:choices].find{|c| c[:answer] == true}
+        next unless (correct_choice && !correct_choice.empty?)
+        processing_node.respcondition do |condition_node|
+          condition_node.conditionvar do |var_node|
+            var_node.varequal correct_choice[:id], :respident => "response_#{response[:id]}"
+          end
+          condition_node.setvar "%.2f" % weight, :varname => 'SCORE', :action => 'Add'
+        end
+      end
     end
   end
 end
