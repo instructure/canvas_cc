@@ -47,6 +47,7 @@ module CanvasCc::CanvasCC
           xml.pinned discussion.pinned
           xml.delayed_post_at discussion.delayed_post_at
           xml.lock_at discussion.lock_at
+          xml.workflow_state discussion.workflow_state
           unless discussion.assignment.nil?
             xml.assignment('identifier' => discussion.assignment.assignment_resource.identifier) { |xml|
               assignment_xml(discussion.assignment, xml)

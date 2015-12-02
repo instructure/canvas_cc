@@ -31,6 +31,7 @@ describe CanvasCc::CanvasCC::DiscussionWriter do
     discussion.pinned = true
     discussion.delayed_post_at = time
     discussion.lock_at = time
+    discussion.workflow_state = 'unpublished'
     writer.write
     xml = Nokogiri::XML(File.read(File.join(work_dir, discussion.meta_resource.href)))
     expect(xml.at_xpath('xmlns:topicMeta/@identifier').value).to eq('discussion_id_meta')
@@ -42,6 +43,8 @@ describe CanvasCc::CanvasCC::DiscussionWriter do
     expect(xml.%('topicMeta/pinned').text).to eq 'true'
     expect(xml.%('topicMeta/delayed_post_at').text).to eq time.to_s
     expect(xml.%('topicMeta/lock_at').text).to eq time.to_s
+    expect(xml.%('topicMeta/workflow_state').text).to eq 'unpublished'
+
 
   end
 
