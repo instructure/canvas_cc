@@ -4,7 +4,7 @@ module CanvasCc::CanvasCC::Models
     WEB_RESOURCES = 'web_resources'
 
     attr_reader :file_path
-    attr_accessor :file_location, :hidden, :locked, :usage_rights
+    attr_accessor :file_location, :hidden, :locked, :usage_rights, :unlock_at, :lock_at
 
     def initialize
       super

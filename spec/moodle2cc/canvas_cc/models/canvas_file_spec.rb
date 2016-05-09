@@ -7,6 +7,8 @@ module CanvasCc::CanvasCC::Models
     it_behaves_like 'it has an attribute for', :file_location
     it_behaves_like 'it has an attribute for', :hidden
     it_behaves_like 'it has an attribute for', :locked
+    it_behaves_like 'it has an attribute for', :unlock_at
+    it_behaves_like 'it has an attribute for', :lock_at
 
     it 'has a type to webcontent' do
       expect(subject.type).to eq(Resource::WEB_CONTENT_TYPE)

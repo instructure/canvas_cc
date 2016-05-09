@@ -36,6 +36,9 @@ module CanvasCc::CanvasCC
       file.hidden = true
       file.locked = true
       file.identifier = 'abc123'
+      time_now = DateTime.now.iso8601
+      file.unlock_at = time_now
+      file.lock_at = time_now
       create_file('sample.txt') do |source_file|
         file.file_location = source_file
         file.file_path = 'sample.txt'
@@ -43,6 +46,8 @@ module CanvasCc::CanvasCC
         expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/@identifier').text).to eq 'abc123'
         expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:locked').text).to eq 'true'
         expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:hidden').text).to eq 'true'
+        expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:unlock_at').text).to eq time_now
+        expect(xml.at_xpath('xmlns:fileMeta/xmlns:files/xmlns:file/xmlns:lock_at').text).to eq time_now
       end
     end
 
