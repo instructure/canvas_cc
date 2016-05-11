@@ -30,6 +30,7 @@ module CanvasCc::CanvasCC
       assessment.ip_filter = '42.42.42.42'
       assessment.shuffle_answers = "every day i'm shuffling answers"
       assessment.quiz_type = 'the best kind of quiz'
+      assessment.one_time_results = true
 
       assessment.items = []
       subject.write
@@ -54,6 +55,7 @@ module CanvasCc::CanvasCC
       expect(root.%('ip_filter').text).to eq assessment.ip_filter
       expect(root.%('shuffle_answers').text).to eq assessment.shuffle_answers
       expect(root.%('quiz_type').text).to eq assessment.quiz_type
+      expect(root.%('one_time_results').text).to eq assessment.one_time_results.to_s
     end
 
     it 'creates assignment meta' do

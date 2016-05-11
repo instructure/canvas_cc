@@ -28,6 +28,7 @@ describe CanvasCc::CanvasCC::Models::Assessment do
   it_behaves_like 'it has an attribute for', :one_question_at_a_time
   it_behaves_like 'it has an attribute for', :cant_go_back
   it_behaves_like 'it has an attribute for', :assignment_group_identifierref
+  it_behaves_like 'it has an attribute for', :one_time_results
 
   it_behaves_like 'it has an attribute for', :question_references, []
   it_behaves_like 'it has an attribute for', :items
