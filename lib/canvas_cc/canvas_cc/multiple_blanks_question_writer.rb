@@ -44,5 +44,9 @@ module CanvasCc::CanvasCC
       end
     end
 
+    def self.write_additional_nodes(item_node, question)
+      write_standard_answer_feedbacks(item_node, question)
+    end
+
   end
 end
