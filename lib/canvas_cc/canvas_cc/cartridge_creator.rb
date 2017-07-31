@@ -42,6 +42,7 @@ module CanvasCc::CanvasCC
       CanvasCc::CanvasCC::CanvasExportWriter.new(dir).write
       CanvasCc::CanvasCC::CourseSettingWriter.new(dir, @course).write
       CanvasCc::CanvasCC::CourseSyllabusWriter.new(dir, @course.syllabus).write
+      CanvasCc::CanvasCC::GradingStandardWriter.new(dir, @course.grading_standards).write
       CanvasCc::CanvasCC::AssignmentGroupWriter.new(dir, @course.assignment_groups).write
       CanvasCc::CanvasCC::ModuleMetaWriter.new(dir, *@course.canvas_modules).write
       CanvasCc::CanvasCC::ImsManifestGenerator.new(dir, @course).write
