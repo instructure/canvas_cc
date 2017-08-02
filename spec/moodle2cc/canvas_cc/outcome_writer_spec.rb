@@ -34,6 +34,16 @@ describe CanvasCc::CanvasCC::OutcomeWriter do
     expect(node.at_xpath('xmlns:points_possible').text).to eql '5'
     expect(node.at_xpath('xmlns:mastery_points').text).to eql '5'
     expect(node.at_xpath('xmlns:is_global_outcome').text).to eql 'false'
+    expect(node.at_xpath('xmlns:calculation_method')).to eql nil
+    expect(node.at_xpath('xmlns:calculation_int')).to eql nil
+  end
+
+  it 'adds calculation_int if calculation_method is set to "decaying_average"' do
+    outcome.calculation_method = 'decaying_average'
+    xml = write_xml(outcome)
+    node = xml.at_xpath('//xmlns:learningOutcomes/xmlns:learningOutcome')
+    expect(node.at_xpath('xmlns:calculation_method').text).to eql 'decaying_average'
+    expect(node.at_xpath('xmlns:calculation_int').text).to eql '65'
   end
 
   private

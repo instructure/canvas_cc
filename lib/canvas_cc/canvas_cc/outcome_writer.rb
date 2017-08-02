@@ -14,6 +14,8 @@ module CanvasCc::CanvasCC
             xml.learningOutcome(identifier: outcome.identifier) do
               xml.title outcome.title
               xml.description outcome.description
+              xml.calculation_method outcome.calculation_method if outcome.calculation_method
+              xml.calculation_int(outcome.calculation_int) if outcome.calculation_method == 'decaying_average'
               xml.points_possible outcome.points_possible
               xml.mastery_points outcome.mastery_points
               xml << CanvasCc::CanvasCC::RatingWriter.new(*outcome.ratings).write

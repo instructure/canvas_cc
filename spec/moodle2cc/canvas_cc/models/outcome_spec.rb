@@ -9,4 +9,6 @@ describe CanvasCc::CanvasCC::Models::Outcome do
   it('has an attribute for ratings') { expect(subject.ratings).to eql [] }
   it_behaves_like 'it has an attribute for', :is_global_outcome
   it_behaves_like 'it has an attribute for', :external_identifier
+  it_behaves_like 'it has an attribute for', :calculation_method
+  it('has an attribute for calculation_int') { expect(subject.calculation_int).to eql 65 }
 end
