@@ -8,7 +8,7 @@ module CanvasCc::CanvasCC
     # It is assumed that ratings will be written only within the context of another object,
     # such as learning outcomes or rubrics
     def write
-      Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      Nokogiri::XML::Builder.new do |xml|
         xml.ratings do |xml|
           @ratings.each do |rating|
             xml.rating do
@@ -20,7 +20,7 @@ module CanvasCc::CanvasCC
             end
           end
         end
-      end.to_xml
+      end.doc.root.to_xml
     end
   end
 

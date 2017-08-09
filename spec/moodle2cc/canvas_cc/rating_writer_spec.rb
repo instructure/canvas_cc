@@ -21,6 +21,12 @@ describe CanvasCc::CanvasCC::RatingWriter do
     expect(node.at_xpath('long_description').text).to eql rating.long_description
   end
 
+  it 'does not include xml header' do
+    writer = CanvasCc::CanvasCC::RatingWriter.new rating
+    xml = writer.write
+    expect(xml.match(/<\?xml/)).to eq nil
+  end
+
   private
   def write_xml(rating)
     writer = CanvasCc::CanvasCC::RatingWriter.new rating

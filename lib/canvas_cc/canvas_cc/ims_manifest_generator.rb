@@ -115,10 +115,12 @@ module CanvasCc::CanvasCC
       course_setting_file = File.join(course_setting_dir, CanvasCc::CanvasCC::CourseSettingWriter::COURSE_SETTINGS_FILE)
       module_meta_file = File.join(course_setting_dir, CanvasCc::CanvasCC::ModuleMetaWriter::MODULE_META_FILE)
       grading_standards_file = File.join(course_setting_dir, CanvasCc::CanvasCC::GradingStandardWriter::GRADING_STANDARD_FILE)
+      learning_outcomes_file = File.join(course_setting_dir, CanvasCc::CanvasCC::OutcomeWriter::LEARNING_OUTCOMES_FILE)
       xml.resource('identifier' => @course.identifier + SETTINGS_POSTFIX, 'type' => TYPE_LAR, 'href' => export_file) { |xml|
         xml.file('href' => course_setting_file)
         xml.file('href' => module_meta_file) if @course.canvas_modules.count > 0
         xml.file('href' => grading_standards_file)
+        xml.file('href' => learning_outcomes_file) if @course.outcomes.count > 0
       }
     end
 
