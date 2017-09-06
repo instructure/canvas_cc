@@ -28,5 +28,11 @@ module CanvasCc::CanvasCC::Models
       expect(page.href).to eq expected
     end
 
+    it "generates urls from page name" do
+      name = '2.1_nutrition(mythbustercarbohydrates).html'
+      url = Page.convert_name_to_url(name)
+      expect(url).to eq '2-dot-1-nutrition-mythbustercarbohydrates-dot-html'
+    end
+
   end
 end
