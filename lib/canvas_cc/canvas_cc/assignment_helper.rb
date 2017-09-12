@@ -7,6 +7,7 @@ module CanvasCc::CanvasCC::AssignmentHelper
     xml.all_day_date CanvasCc::CC::CCHelper.ims_datetime(assignment.all_day_date) if assignment.all_day_date
     xml.peer_reviews_due_at CanvasCc::CC::CCHelper.ims_datetime(assignment.peer_reviews_due_at) if assignment.peer_reviews_due_at
     xml.assignment_group_identifierref assignment.assignment_group_identifier_ref if assignment.assignment_group_identifier_ref
+    xml.grading_standard_identifierref assignment.grading_standard_identifier_ref if assignment.grading_standard_identifier_ref
     xml.workflow_state assignment.workflow_state if assignment.workflow_state
     xml.points_possible assignment.points_possible if assignment.points_possible
     xml.grading_type assignment.grading_type if assignment.grading_type

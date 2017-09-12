@@ -12,6 +12,7 @@ describe CanvasCc::CanvasCC::Models::Assignment do
   it_behaves_like 'it has an attribute for', :all_day_date
   it_behaves_like 'it has an attribute for', :peer_reviews_due_at
   it_behaves_like 'it has an attribute for', :assignment_group_identifier_ref
+  it_behaves_like 'it has an attribute for', :grading_standard_identifier_ref
   it_behaves_like 'it has an attribute for', :workflow_state
   it_behaves_like 'it has an attribute for', :points_possible
   it_behaves_like 'it has an attribute for', :grading_type
