@@ -23,6 +23,7 @@ describe CanvasCc::CanvasCC::Models::Assignment do
   it_behaves_like 'it has an attribute for', :peer_reviews
   it_behaves_like 'it has an attribute for', :automatic_peer_reviews
   it_behaves_like 'it has an attribute for', :grade_group_students_individually
+  it_behaves_like 'it has an attribute for', :omit_from_final_grade
 
   it 'creates a resource' do
     subject.stub(:assignment_resource) {:assignment_resource}
