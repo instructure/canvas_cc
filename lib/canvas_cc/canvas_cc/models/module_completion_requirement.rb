@@ -5,5 +5,6 @@ module CanvasCc::CanvasCC::Models
     CONTENT_TYPE_MUST_SUBMIT = 'must_submit'
     CONTENT_TYPE_MIN_SCORE = 'min_score'
     CONTENT_TYPE_MUST_CONTRIBUTE = 'must_contribute'
+    CONTENT_TYPE_MARK_AS_DONE = 'must_mark_done'
   end
 end
