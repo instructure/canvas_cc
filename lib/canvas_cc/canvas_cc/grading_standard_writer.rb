@@ -8,6 +8,7 @@ module CanvasCc::CanvasCC
     end
 
     def write
+      return unless @grading_standards.present?
       xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         write_grading_standards(xml) do |xml|
           @grading_standards.each do |gs|
