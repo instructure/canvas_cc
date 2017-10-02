@@ -18,6 +18,19 @@ module CanvasCc::CanvasCC
               xml.calculation_int(outcome.calculation_int) if outcome.calculation_method == 'decaying_average'
               xml.points_possible outcome.points_possible
               xml.mastery_points outcome.mastery_points
+              if outcome.alignments.any?
+                xml.alignments do
+                  outcome.alignments.each do |alignment|
+                    xml.alignment do
+                      xml.content_type alignment.content_type
+                      xml.content_id alignment.content_id
+                      xml.mastery_type alignment.mastery_type
+                      xml.mastery_score alignment.mastery_score
+                      xml.position alignment.position
+                    end
+                  end
+                end
+              end
               xml << CanvasCc::CanvasCC::RatingWriter.new(*outcome.ratings).write
               xml.is_global_outcome outcome.is_global_outcome
               xml.external_identifier outcome.external_identifier if outcome.external_identifier

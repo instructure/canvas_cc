@@ -86,6 +86,7 @@ module CanvasCc
       autoload :DiscussionTopic, 'canvas_cc/canvas_cc/models/discussion_topic'
       autoload :Question, 'canvas_cc/canvas_cc/models/question'
       autoload :CalculatedQuestion, 'canvas_cc/canvas_cc/models/calculated_question'
+      autoload :Alignment, 'canvas_cc/canvas_cc/models/alignment'
       autoload :Answer, 'canvas_cc/canvas_cc/models/answer'
       autoload :QuestionBank, 'canvas_cc/canvas_cc/models/question_bank'
       autoload :QuestionGroup, 'canvas_cc/canvas_cc/models/question_group'
