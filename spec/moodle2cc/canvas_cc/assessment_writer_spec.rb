@@ -12,7 +12,7 @@ module CanvasCc::CanvasCC
     end
 
     it 'raises an error unless question references are first resolved' do
-      expect { subject.write }.to raise_exception
+      expect { subject.write }.to raise_exception("need to resolve questions references")
     end
 
     it 'creates the assessment meta file' do
