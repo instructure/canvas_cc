@@ -28,7 +28,7 @@ module CanvasCc::CanvasCC
         file.file_path = 'sample.txt'
         write_xml(writer(file, nil))
         path = File.join(tmpdir, Models::CanvasFile::WEB_RESOURCES, 'sample.txt')
-        expect(File.exist?(path)).to be_true
+        expect(File.exist?(path)).to be_truthy
       end
     end
 
