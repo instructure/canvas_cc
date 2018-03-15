@@ -17,7 +17,7 @@ module CanvasCc::CanvasCC
 
     it 'xml contains the correct schema' do
       meta_writer = writer(file, nil)
-      meta_writer.stub(:copy_files) { nil }
+      allow(meta_writer).to receive(:copy_files) { nil }
       xml = write_xml(meta_writer)
       assert_xml_schema(xml)
     end

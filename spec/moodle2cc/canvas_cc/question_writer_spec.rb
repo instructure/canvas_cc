@@ -26,7 +26,7 @@ module CanvasCc::CanvasCC
     end
 
     it 'registers a question type for writing' do
-      FooBarWriter.stub(:write_question_item_xml)
+      allow(FooBarWriter).to receive(:write_question_item_xml)
       Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |node|
         QuestionWriter.write_question(node, question)
       end

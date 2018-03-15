@@ -12,19 +12,19 @@ module CanvasCc::CanvasCC
       course.title = 'My Course'
       course.canvas_modules << Models::CanvasModule.new
 
-      CanvasExportWriter.any_instance.stub(:write)
-      CourseSyllabusWriter.any_instance.stub(:write)
-      GradingStandardWriter.any_instance.stub(:write)
-      CourseSettingWriter.any_instance.stub(:write)
-      ModuleMetaWriter.any_instance.stub(:write)
-      ImsManifestGenerator.any_instance.stub(:write)
-      FileMetaWriter.any_instance.stub(:write)
-      PageWriter.any_instance.stub(:write)
-      DiscussionWriter.any_instance.stub(:write)
-      AssignmentWriter.any_instance.stub(:write)
-      QuestionBankWriter.any_instance.stub(:write)
-      OutcomeWriter.any_instance.stub(:write)
-      RubricWriter.any_instance.stub(:write)
+      allow_any_instance_of(CanvasExportWriter).to receive(:write)
+      allow_any_instance_of(CourseSyllabusWriter).to receive(:write)
+      allow_any_instance_of(GradingStandardWriter).to receive(:write)
+      allow_any_instance_of(CourseSettingWriter).to receive(:write)
+      allow_any_instance_of(ModuleMetaWriter).to receive(:write)
+      allow_any_instance_of(ImsManifestGenerator).to receive(:write)
+      allow_any_instance_of(FileMetaWriter).to receive(:write)
+      allow_any_instance_of(PageWriter).to receive(:write)
+      allow_any_instance_of(DiscussionWriter).to receive(:write)
+      allow_any_instance_of(AssignmentWriter).to receive(:write)
+      allow_any_instance_of(QuestionBankWriter).to receive(:write)
+      allow_any_instance_of(OutcomeWriter).to receive(:write)
+      allow_any_instance_of(RubricWriter).to receive(:write)
     end
 
     after :each do
@@ -35,7 +35,7 @@ module CanvasCc::CanvasCC
      FileMetaWriter, PageWriter, DiscussionWriter, AssignmentWriter, QuestionBankWriter, OutcomeWriter, RubricWriter].each do |klass|
       it "writes #{klass}" do
         writer_double = double(write: nil)
-        klass.stub(:new).and_return(writer_double)
+        allow(klass).to receive(:new).and_return(writer_double)
         subject.create(tmpdir)
         expect(writer_double).to have_received(:write)
       end
