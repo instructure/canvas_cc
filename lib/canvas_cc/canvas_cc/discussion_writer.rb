@@ -41,7 +41,7 @@ module CanvasCc::CanvasCC
           xml.topic_id discussion_resource.identifier
           xml.title discussion.title
           xml.position discussion.position
-          xml.type 'topic'
+          xml.type discussion.type || 'topic'
           xml.discussion_type discussion.discussion_type
           xml.require_initial_post discussion.require_initial_post
           xml.pinned discussion.pinned
