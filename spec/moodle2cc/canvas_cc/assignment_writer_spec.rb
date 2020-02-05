@@ -22,7 +22,7 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     assignment.points_possible = '30'
     assignment.grading_type = 'points'
     assignment.all_day = 'true'
-    assignment.submission_types = %w(online_text_entry online_url online_upload)
+    assignment.submission_types = %w(online_text_entry online_url online_upload external_tool)
     assignment.position = '2'
     assignment.peer_review_count = '0'
     assignment.peer_reviews_assigned = 'false'
@@ -31,6 +31,8 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     assignment.grade_group_students_individually = 'false'
     assignment.muted = true
     assignment.quiz_identifierref = 'abc'
+    assignment.external_tool_url = 'http://example.com/lunch'
+    assignment.external_tool_new_tab = true
 
     subject.write
     xml = Nokogiri::XML(File.read(File.join(work_dir, assignment.assignment_resource.files.select{ |f| f.split(//).last(4).join("").to_s == '.xml'}.first)))
@@ -46,7 +48,7 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     expect(xml.%('assignment/points_possible').text).to eq '30'
     expect(xml.%('assignment/grading_type').text).to eq 'points'
     expect(xml.%('assignment/all_day').text).to eq 'true'
-    expect(xml.%('assignment/submission_types').text).to eq 'online_text_entry,online_url,online_upload'
+    expect(xml.%('assignment/submission_types').text).to eq 'online_text_entry,online_url,online_upload,external_tool'
     expect(xml.%('assignment/position').text).to eq '2'
     expect(xml.%('assignment/peer_review_count').text).to eq '0'
     expect(xml.%('assignment/peer_reviews_assigned').text).to eq 'false'
@@ -55,6 +57,8 @@ describe CanvasCc::CanvasCC::AssignmentWriter do
     expect(xml.%('assignment/grade_group_students_individually').text).to eq 'false'
     expect(xml.%('assignment/muted').text).to eq 'true'
     expect(xml.%('assignment/quiz_identifierref').text).to eq 'abc'
+    expect(xml.%('assignment/external_tool_url').text).to eq 'http://example.com/lunch'
+    expect(xml.%('assignment/external_tool_new_tab').text).to eq 'true'
 
   end
 

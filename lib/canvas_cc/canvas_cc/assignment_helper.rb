@@ -34,5 +34,7 @@ module CanvasCc::CanvasCC::AssignmentHelper
     end
     xml.rubric_use_for_grading assignment.rubric_use_for_grading unless assignment.rubric_use_for_grading.nil?
     xml.rubric_hide_score_total assignment.rubric_hide_score_total unless assignment.rubric_hide_score_total.nil?
+    xml.external_tool_url assignment.external_tool_url if assignment.external_tool_url
+    xml.external_tool_new_tab assignment.external_tool_new_tab if assignment.external_tool_new_tab
   end
 end
