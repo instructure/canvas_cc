@@ -1,7 +1,7 @@
 module CanvasCc::CanvasCC::Models
   class ModuleItem
     attr_accessor :identifier, :content_type, :workflow_state, :title,
-                  :new_tab, :indent, :resource, :identifierref, :url
+                  :new_tab, :indent, :resource, :identifierref, :url, :external_tool_url
 
     CONTENT_TYPE_WIKI_PAGE = 'WikiPage'
     CONTENT_TYPE_ATTACHMENT = 'Attachment'

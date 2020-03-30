@@ -55,6 +55,7 @@ module CanvasCc::CanvasCC
           xml.indent(item.indent)
           xml.identifierref(item.identifierref) if item.identifierref
           xml.url(item.url) if item.url
+          xml.external_tool_url(item.external_tool_url) if item.external_tool_url
         }
       end
     end
