@@ -98,7 +98,7 @@ module CanvasCc::CanvasCC
         module_item.new_tab = nil
         module_item.indent = "1"
         module_item.url = 'http://example.com'
-
+        module_item.external_tool_url = 'http://example.com/lunch'
         module_item.identifierref = 'resource_id'
 
         canvas_module.module_items << module_item
@@ -115,6 +115,7 @@ module CanvasCc::CanvasCC
         expect(item_node.%('indent').text).to eq('1')
         expect(item_node.%('identifierref').text).to eq('resource_id')
         expect(item_node.%('url').text).to eq('http://example.com')
+        expect(item_node.%('external_tool_url').text).to eq('http://example.com/lunch')
       end
 
       it 'does not write the identifierref if it is not provided' do
