@@ -1,6 +1,6 @@
 # CanvasCc
 
-This Gem allows for converting content to Canvas Common Cartridge format.  The Gem allows building up Canvas objects(Courses, Assignments, Quizzes, Terms, etc.), without having to think about the xml format, and then will correctly build the .imscc file.  The xsd for the CanvasCC format can be found [here](https://github.com/instructure/canvas-lms/blob/stable/lib/cc/xsd/cccv1p0.xsd).  **NOTE: not all settings are currently supported by the gem, supported settings are documented**
+This Gem allows for converting content to Canvas Common Cartridge format.  The Gem allows building up Canvas objects(Courses, Assignments, Quizzes, Terms, etc.), without having to think about the xml format, and then will correctly build the .imscc file.  The xsd for the CanvasCC format can be found [here](https://github.com/instructure/canvas-lms/blob/master/lib/cc/xsd/cccv1p0.xsd).  **NOTE: not all settings are currently supported by the gem, supported settings are documented**
 
 
 ## Installation
@@ -20,7 +20,7 @@ Or install it yourself as:
 ## Usage
 The Gem will convert content to a Canvas course, so a Course should be the first object created.
 
-###Course
+### Course
 
      course = CanvasCc::CanvasCC::Models::Course.new
 
@@ -51,7 +51,7 @@ The following are attributes available on the Course object.
 * **hide_final_grade** - hide final grade from students
 * **storage_quota** - the storage quota of the course in MB, for example 5000 is 5GB
 
-###Assignments
+### Assignments
     assignment = CanvasCc::CanvasCC::Models::Assignment.new
     #set attributes
     course.assignments << assignment
@@ -73,7 +73,7 @@ The following are attributes available on the Assignment object.
         assignment.submission_types << 'online_quiz'
 * **grading_type** - the grading type for the assignment, one of the following: ('letter_grade', 'points', 'percentage', 'pass_fail')
 
-###Assessments
+### Assessments
      assessment = CanvasCc::CanvasCC::Models::Assessment.new
      #set assessment attributes
      course.assessments << assessment
@@ -101,7 +101,7 @@ The following are attributes associated with the Assessment object.
 * **show_correct_answers_at** - show correct answers on the following date
 * **points_possible** - points possible on the quiz
 
-###Questions
+### Questions
     question = CanvasCc::CanvasCC::Models::Question.create('<QUESTION_TYPE>')
     assessment.items << question
 
@@ -136,7 +136,7 @@ Some question types have additional attributes as noted below
         range.high_range = 10
         question.ranges[answer.id] = range
 
-###Answers
+### Answers
     answer = CanvasCc::CanvasCC::Models::Answer.new(<ANSWER>)
     question.answers << answer
 
@@ -155,7 +155,7 @@ Depending on the type of question the answer_text will be formatted as follows:
 * **multiple_choice_question**
   * **fraction** - this is set to 1.0 if it is the correct answer, 0.0 if incorrect answer.
 
-###Question Banks
+### Question Banks
 Question bank allow for creating a pool of questions that can be pulled from for a quiz.  They can be created as follows.
 
     question_bank = CanvasCc::CanvasCC::Models::QuestionBank.new
@@ -175,7 +175,7 @@ Once a question bank is setup a quiz can be set to pull questions from the bank 
     question_bank.question_groups << question_group # associate this group with the bank
     assessment.items << question_group # add gropu to assesment items
 
-###Canvas Modules
+### Canvas Modules
 A Canvas Module can be created as follows
     module = CanvasCc::CanvasCC::Models::CanvasModule.new
     course.canvas_modules << module
@@ -187,7 +187,7 @@ The following attributes are associated with the Module object.
 * **workflow_state** - the initial workflow state for the module, either 'active' or 'unpublished'
 * **module_items** - array of ModuleItems for the module.
 
-###Module Item
+### Module Item
 A Module Item represents an item within a module, this can be one of serveral types as described below.  A ModuleItem can be crated as follows
 
     module_item = CanvasCc::CanvasCC::Models::ModuleItem.new
@@ -206,7 +206,7 @@ The following attributes are associated with a ModuleItem
   * **Quizzes::Quiz** - when referencing an Assessment
   * **ExternalUrl** - when referencing an external url
 
-###Module Completion Requirements
+### Module Completion Requirements
 In Canvas modules can have completion req. associated with them, these can be setup in the content package as follows
 
     completion_requirement = CanvasCc::CanvasCC::Models::ModuleCompletionRequirement.new
@@ -220,7 +220,7 @@ The following attributes are associated with the ModuleCompletionRequirement obj
   * **min_score** - user must achieve a minimum score on the content **note the following attribute must also be set when using min_score 'min_score', with a value of the minimum score**
   * **must_contribute** - user must contribute to the content
 
-###Module Prerequisites
+### Module Prerequisites
 In Canvas modules can have prerequisites as requirements, these can be setup in the content package as follows
 
     module_pre_requisite = CanvasCc::CanvasCC::Models::ModulePrerequisite.new
@@ -231,7 +231,7 @@ The following attributes are associated with the ModulePrerequisite object
 * **title** - the title of the prerequisite
 * **type** - should be set to 'context_module'
 
-###Folders
+### Folders
 A folders used to group files under the files section in Canvas, a folder can be created as follows
 
     folder = CanvasCc::CanvasCC::Models::CanvasFolder.new
@@ -242,7 +242,7 @@ A Folder can have the following attributes
 * **hidden** - whether or not the folder should be hidden.  true or false
 * **locked** - whether or not the folder should be locked.  true or false
 
-###Files
+### Files
 A file is a resource that is placed in the Canvas files section.  A File can be created as follows
 
     file = CanvasCc::CanvasCC::Models::CanvasFile.new
@@ -261,7 +261,7 @@ To reference a file inside of html content within pages, quizzes, assignments, d
 
 **NOTE: to place a file in a folder, make sure the file_path is the same as the folder_location**
 
-###Pages
+### Pages
 A Page can be created in Canvas as follows
     page = CanvasCc::CanvasCC::Models::Page.new
     course.pages << page
@@ -274,7 +274,7 @@ A Page can have the following attributes
 
 
 
-###Discussions
+### Discussions
 A Discussion can be created in Canvas as follows
 
     discussion = CanvasCc::CanvasCC::Models::Discussion.new
@@ -288,7 +288,7 @@ A Discussion can have the following attributes
 * **discussion_type** - the type of discussion 'threaded' or 'side_comment'
 * **position** - used to control the ordering of discussions
 
-###Assignment_groups
+### Assignment_groups
 An AssignmentGroup can be created in Canvas as follows
 
     assignment_group = CanvasCc::CanvasCC::Models::AssignmentGroup.new
